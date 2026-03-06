@@ -1,139 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Robin Sharma</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robin Sharma</title>
 
-<style>
-
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(120deg,#22c55e,#3b82f6,#8b5cf6,#ec4899);
-  background-size:300% 300%;
-  animation:bg 10s ease infinite;
-  font-family:system-ui;
-}
-
-@keyframes bg{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-.container{
-  text-align:center;
-}
-
-h1{
-  color:white;
-  font-size:52px;
-  margin-bottom:50px;
-}
-
-.cards{
-  display:flex;
-  gap:40px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.card{
-  width:300px;
-  background:white;
-  padding:35px;
-  border-radius:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.25);
-  text-align:center;
-  transition:all .3s;
-}
-
-.card:hover{
-  transform:translateY(-10px) scale(1.05);
-}
-
-img{
-  width:180px;
-  margin-bottom:20px;
-}
-
-p{
-  color:#475569;
-  font-size:16px;
-}
-
-button{
-  margin-top:20px;
-  padding:14px 26px;
-  font-size:16px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(90deg,#22c55e,#3b82f6);
-  color:white;
-  cursor:pointer;
-  transition:all .25s;
-}
-
-button:hover{
-  transform:scale(1.08);
-}
-
-.contact{
-  margin-top:60px;
-  color:white;
-  font-size:18px;
-}
-
-.contact a{
-  color:#fff;
-  font-weight:bold;
-  text-decoration:none;
-}
-
-.contact a:hover{
-  text-decoration:underline;
-}
-
-</style>
+  <style>
+    :root{--glass:rgba(255,255,255,.14);--glass2:rgba(255,255,255,.10);--stroke:rgba(255,255,255,.18);--shadow:0 30px 80px rgba(0,0,0,.32);--shadow2:0 18px 40px rgba(0,0,0,.25);--text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);--btn:linear-gradient(90deg,#22c55e,#3b82f6,#8b5cf6)}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji";color:var(--text);overflow:hidden;background:radial-gradient(1200px 700px at 20% 20%,rgba(34,197,94,.35),transparent 60%),radial-gradient(900px 600px at 80% 30%,rgba(59,130,246,.35),transparent 60%),radial-gradient(900px 600px at 40% 85%,rgba(236,72,153,.28),transparent 60%),linear-gradient(120deg,#0b1020,#111b33);background-size:200% 200%;animation:bgShift 14s ease-in-out infinite}
+    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
+    .orb{position:fixed;width:420px;height:420px;border-radius:50%;filter:blur(30px);opacity:.22;animation:floaty 14s ease-in-out infinite;pointer-events:none}.orb.one{left:-140px;top:-120px;background:#22c55e}.orb.two{right:-170px;top:60px;background:#3b82f6;animation-delay:-4s}.orb.three{left:18%;bottom:-210px;background:#ec4899;animation-delay:-8s}
+    @keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-18px) scale(1.06)}}
+    .particles{position:fixed;inset:0;pointer-events:none}.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.6;animation:snowfall linear infinite}
+    @keyframes snowfall{from{transform:translateY(-10px) rotate(0deg)}to{transform:translateY(110vh) rotate(360deg)}}
+    .banner{position:fixed;top:20px;left:0;right:0;z-index:10;pointer-events:none;display:flex;justify-content:flex-start}.banner h1{margin:0;font-size:clamp(36px,6vw,64px);letter-spacing:1.2px;font-weight:700;white-space:nowrap;animation:slideBounce 30s linear infinite}
+    @keyframes slideBounce{0%{transform:translateX(0)}50%{transform:translateX(77vw)}100%{transform:translateX(0)}}
+    .banner-snow{position:absolute;top:100%;left:0;width:100%;height:200px;pointer-events:none;overflow:hidden}
+    .banner-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.8;animation:bannerSnowfall linear infinite}
+    @keyframes bannerSnowfall{0%{transform:translateY(0) rotate(0deg);opacity:.8}50%{opacity:.6}100%{transform:translateY(200px) rotate(180deg);opacity:0}}
+    .wrap{position:relative;z-index:5;height:100%;display:flex;align-items:center;justify-content:center;padding:28px}
+    .panel{width:min(980px,100%);border:1px solid var(--stroke);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:34px 28px 26px;position:relative;overflow:hidden}
+    .panel::before{content:"";position:absolute;inset:-2px;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.22),transparent 55%);opacity:.9;pointer-events:none;transition:opacity .15s ease}
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;position:relative;flex-wrap:nowrap}
+    .title{text-align:left;flex:1;min-width:0}.title p{margin:0;color:var(--muted);font-size:14px;line-height:1.4;max-width:100%}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:rgba(255,255,255,.86);font-size:13px;white-space:nowrap;user-select:none}
+    .dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px;position:relative}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}header{flex-direction:column}.pill{align-self:flex-start}}
+    .card{border-radius:22px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.08));box-shadow:var(--shadow2);overflow:hidden;transform-style:preserve-3d;transition:transform .18s ease,box-shadow .18s ease;position:relative;display:flex;flex-direction:column}
+    .card:hover{box-shadow:0 28px 90px rgba(0,0,0,.38)}
+    .cardTop{padding:18px 18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .tags{display:flex;align-items:center;gap:8px}
+    .tag{font-size:12px;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.12);padding:7px 10px;border-radius:999px}
+    .thumb{margin:14px 18px 0;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.12);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);filter:saturate(1.05) contrast(1.02)}
+    .cardBody{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column}
+    .cardBody h2{margin:4px 0 6px;font-size:22px;letter-spacing:.2px}
+    .cardBody p{margin:0;color:rgba(255,255,255,.76);line-height:1.5;font-size:14.5px}
+    .actions{display:flex;gap:10px;margin-top:auto;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:white;text-decoration:none;font-weight:650;letter-spacing:.2px;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;cursor:pointer;user-select:none}
+    .btn.primary{background:var(--btn);border:none;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
+    .btn:active{transform:translateY(0) scale(.99)}
+    .icon{width:18px;height:18px;display:inline-block}
+    footer{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:rgba(255,255,255,.78);font-size:14px;position:relative}
+    .email a{color:white;font-weight:700;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.45)}
+    .email a:hover{border-bottom-style:solid}
+  </style>
 </head>
 
 <body>
+  <div class="noise"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+  <div class="particles" id="particles"></div>
 
-<div class="container">
+  <div class="banner">
+    <h1>Robin Sharma</h1>
+    <div class="banner-snow" id="banner-snow"></div>
+  </div>
 
-<h1>Robin Sharma</h1>
+  <div class="wrap">
+    <main class="panel" id="panel">
+      <header>
+        <div class="title">
+          <p>
+            Quick links to my main work. Pick what you want to view.
+          </p>
+        </div>
+      </header>
 
-<div class="cards">
+      <section class="grid">
+        <article class="card" data-tilt>
+          <div class="cardTop">
+            <div class="tags">
+              <span class="tag">App</span>
+              <span class="tag">Steps • Leaderboard</span>
+            </div>
+            <div class="pill" title="Status">
+              <span class="dot"></span>
+              Live
+            </div>
+          </div>
 
-<div class="card">
-<img src="solemate.png">
-<h3>SoleMate</h3>
-<p>Monthly step challenge with leaderboard.</p>
-<a href="https://solemate.robin-sharma.com">
-<button>Open SoleMate</button>
-</a>
-</div>
+          <div class="thumb">
+            <img src="solemate.png" alt="SoleMate preview" />
+          </div>
 
-<div class="card">
-<img src="portfolio.png">
-<h3>Portfolio</h3>
-<p>View my projects, work, and experience.</p>
-<a href="https://portfolio.robin-sharma.com">
-<button>Open Portfolio</button>
-</a>
-</div>
+          <div class="cardBody">
+            <h2>SoleMate</h2>
+            <p>Monthly step challenge with submissions, review, and leaderboard.</p>
 
-</div>
+            <div class="actions">
+              <a class="btn primary" href="https://solemate.robin-sharma.com" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M14 3h7v7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M21 3l-9 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M10 7H7a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Open SoleMate
+              </a>
+            </div>
+          </div>
+        </article>
 
-<div class="contact">
-Contact me at  
-<a href="mailto:help@robin-sharma.com">help@robin-sharma.com</a>
-</div>
+        <article class="card" data-tilt>
+          <div class="cardTop">
+            <div class="tags">
+              <span class="tag">Site</span>
+              <span class="tag">Projects • Work</span>
+            </div>
+            <div class="pill" title="Status">
+              <span class="dot"></span>
+              Live
+            </div>
+          </div>
 
-</div>
+          <div class="thumb">
+            <img src="portfolio.png" alt="Portfolio preview" />
+          </div>
 
+          <div class="cardBody">
+            <h2>Portfolio</h2>
+            <p>Projects, experience, and contact info in one place.</p>
+
+            <div class="actions">
+              <a class="btn primary" href="https://portfolio.robin-sharma.com" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z" stroke="white" stroke-width="2"/>
+                  <path d="M8 8h8M8 12h8M8 16h5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Open Portfolio
+              </a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <div class="email">
+          Contact: <a href="mailto:help@robin-sharma.com">help@robin-sharma.com</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>const particles=document.getElementById("particles"),count=120;for(let i=0;i<count;i++){const p=document.createElement("div");p.className="particle";const size=3+Math.random()*8;p.style.width=size+"px",p.style.height=size+"px",p.style.left=(Math.random()*100)+"%",p.style.animationDuration=(15+Math.random()*25)+"s",p.style.animationDelay=(-Math.random()*30)+"s",p.style.opacity=(.3+Math.random()*.7).toFixed(2),particles.appendChild(p)}const bannerSnow=document.getElementById("banner-snow"),bannerCount=80;for(let i=0;i<bannerCount;i++){const p=document.createElement("div");p.className="banner-particle";const size=2+Math.random()*6;p.style.width=size+"px",p.style.height=size+"px",p.style.left=(Math.random()*100)+"%",p.style.animationDuration=(3+Math.random()*5)+"s",p.style.animationDelay=(-Math.random()*8)+"s",bannerSnow.appendChild(p)}const panel=document.getElementById("panel");window.addEventListener("mousemove",e=>{const r=panel.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*100,y=(e.clientY-r.top)/r.height*100;panel.style.setProperty("--mx",x+"%"),panel.style.setProperty("--my",y+"%")});const cards=document.querySelectorAll("[data-tilt]");cards.forEach(card=>{card.addEventListener("mousemove",e=>{const r=card.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=(e.clientX-cx)/r.width,dy=(e.clientY-cy)/r.height,rx=(-dy*8).toFixed(2),ry=(dx*10).toFixed(2);card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`}),card.addEventListener("mouseleave",()=>card.style.transform="")});document.querySelectorAll(".btn:not(.primary)").forEach(btn=>{btn.addEventListener("click",async e=>{if(!btn.textContent.toLowerCase().includes("copy"))return;e.preventDefault();const href=btn.getAttribute("href");try{await navigator.clipboard.writeText(href);const old=btn.textContent;btn.textContent="Copied!",setTimeout(()=>btn.textContent=old,1e3)}catch{window.open(href,"_blank")}})})</script>
 </body>
 </html>
