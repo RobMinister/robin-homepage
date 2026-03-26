@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robin Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet" />
 
   <style>
     :root{--glass:rgba(255,255,255,.14);--glass2:rgba(255,255,255,.10);--stroke:rgba(255,255,255,.18);--shadow:0 30px 80px rgba(0,0,0,.32);--shadow2:0 18px 40px rgba(0,0,0,.25);--text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);--btn:linear-gradient(90deg,#22c55e,#3b82f6,#8b5cf6)}
@@ -15,8 +18,10 @@
     @keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-18px) scale(1.06)}}
     .particles{position:fixed;inset:0;pointer-events:none}.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.6;animation:snowfall linear infinite}
     @keyframes snowfall{from{transform:translateY(-10px) rotate(0deg)}to{transform:translateY(110vh) rotate(360deg)}}
-    .banner{position:fixed;top:20px;left:0;right:0;z-index:10;pointer-events:none;display:flex;justify-content:flex-start}.banner h1{margin:0;font-size:clamp(36px,6vw,64px);letter-spacing:1.2px;font-weight:700;white-space:nowrap;animation:slideBounce 30s linear infinite}
-    @keyframes slideBounce{0%{transform:translateX(0)}50%{transform:translateX(77vw)}100%{transform:translateX(0)}}
+    .banner{position:fixed;top:20px;left:0;right:0;z-index:10;pointer-events:none;display:flex;justify-content:flex-start;overflow:visible}
+    .banner h1{margin:0;font-size:clamp(36px,6vw,64px);letter-spacing:1.2px;font-weight:700;white-space:nowrap;animation:slideBounce 24s ease-in-out infinite}
+    @media (prefers-reduced-motion:reduce){.banner h1{animation:none}}
+    @keyframes slideBounce{0%{transform:translateX(0)}50%{transform:translateX(calc(100vw - 100% - 24px))}100%{transform:translateX(0)}}
     .banner-snow{position:absolute;top:100%;left:0;width:100%;height:200px;pointer-events:none;overflow:hidden}
     .banner-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.8;animation:bannerSnowfall linear infinite}
     @keyframes bannerSnowfall{0%{transform:translateY(0) rotate(0deg);opacity:.8}50%{opacity:.6}100%{transform:translateY(200px) rotate(180deg);opacity:0}}
@@ -48,11 +53,14 @@
     footer{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:rgba(255,255,255,.78);font-size:14px;position:relative}
     .email a{color:white;font-weight:700;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.45)}
     .email a:hover{border-bottom-style:solid}
-    .social{display:flex;align-items:center;gap:10px}
-    .social a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:white;text-decoration:none;transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
-    .social a:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
-    .social a:focus-visible{outline:2px solid rgba(255,255,255,.55);outline-offset:2px}
-    .social svg{width:22px;height:22px;display:block;fill:currentColor}
+    .social{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .social a.social-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:white;text-decoration:none;transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
+    .social a.social-icon:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
+    .social a.social-icon:focus-visible{outline:2px solid rgba(255,255,255,.55);outline-offset:2px}
+    .social a.social-icon svg{width:22px;height:22px;display:block;fill:currentColor}
+    .resume-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:rgba(255,255,255,.94);text-decoration:none;font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:clamp(19px,2.2vw,21px);font-weight:700;font-style:normal;letter-spacing:.02em;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
+    .resume-link:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28);background:rgba(255,255,255,.14)}
+    .resume-link:focus-visible{outline:2px solid rgba(255,255,255,.55);outline-offset:2px}
   </style>
 </head>
 
@@ -150,16 +158,17 @@
           Contact: <a href="mailto:help@robin-sharma.com">help@robin-sharma.com</a>
         </div>
         <div class="social">
-          <a href="https://www.linkedin.com/in/robinsharma11/" target="_blank" rel="noopener noreferrer" aria-label="Robin Sharma on LinkedIn">
+          <a class="social-icon" href="https://www.linkedin.com/in/robinsharma11/" target="_blank" rel="noopener noreferrer" aria-label="Robin Sharma on LinkedIn">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.418-.027-3.04-1.852-3.04-1.87 0-2.157 1.459-2.157 2.966v5.643H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.141 0 2.065.925 2.065 2.063 0 1.139-.926 2.065-2.065 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .773 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .773 23.2 0 22.225 0z"/>
             </svg>
           </a>
-          <a href="https://github.com/RobMinister" target="_blank" rel="noopener noreferrer" aria-label="Robin Sharma on GitHub">
+          <a class="social-icon" href="https://github.com/RobMinister" target="_blank" rel="noopener noreferrer" aria-label="Robin Sharma on GitHub">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.416-4.042-1.416C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
             </svg>
           </a>
+          <a class="resume-link" href="https://drive.google.com/file/d/1Pobml5G1jhbTOx6QQUCnIN6KJVvIh7_V/view?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Resume (PDF on Google Drive)">Resume</a>
         </div>
       </footer>
     </main>
