@@ -20,36 +20,37 @@
     .particles{position:fixed;inset:0;pointer-events:none}.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.6;animation:snowfall linear infinite}
     @keyframes snowfall{from{transform:translateY(-10px) rotate(0deg)}to{transform:translateY(110vh) rotate(360deg)}}
     .banner{position:fixed;top:14px;left:0;right:0;z-index:10;pointer-events:none;display:flex;justify-content:flex-start;overflow:visible}
-    .banner h1{margin:0;font-size:clamp(36px,6vw,64px);letter-spacing:1.2px;font-weight:700;white-space:nowrap;animation:slideBounce 24s ease-in-out infinite}
+    .banner h1{margin:0;font-size:clamp(28px,4.8vw,50px);letter-spacing:1.2px;font-weight:700;white-space:nowrap;animation:slideBounce 24s ease-in-out infinite}
     @media (prefers-reduced-motion:reduce){.banner h1{animation:none}}
     @keyframes slideBounce{0%{transform:translateX(0)}50%{transform:translateX(calc(100vw - 100% - 24px))}100%{transform:translateX(0)}}
     .banner-snow{position:absolute;top:100%;left:0;width:100%;height:200px;pointer-events:none;overflow:hidden}
     .banner-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.8;animation:bannerSnowfall linear infinite}
     @keyframes bannerSnowfall{0%{transform:translateY(0) rotate(0deg);opacity:.8}50%{opacity:.6}100%{transform:translateY(200px) rotate(180deg);opacity:0}}
-    .wrap{position:relative;z-index:5;height:100%;display:flex;align-items:flex-start;justify-content:center;padding:88px 28px 40px;overflow-y:auto}
-    .helmet-card{grid-column:1/-1}
+    .wrap{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:18px;padding:88px 28px 40px;overflow-y:auto}
+    .helmet-panel{width:min(1240px,100%)}
     model-viewer{width:100%;height:260px;background:transparent;--poster-color:transparent;border-radius:18px}
     .model-hint{font-size:12px;color:rgba(255,255,255,.45);text-align:center;margin-top:8px;letter-spacing:.3px}
-    .panel{width:min(980px,100%);border:1px solid var(--stroke);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:22px 28px 26px;position:relative;overflow:hidden}
+    .panel{width:min(1240px,100%);border:1px solid var(--stroke);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:22px 28px 26px;position:relative;overflow:visible}
     .panel::before{content:"";position:absolute;inset:-2px;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.22),transparent 55%);opacity:.9;pointer-events:none;transition:opacity .15s ease}
     header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:6px;position:relative;flex-wrap:nowrap}
     .title{text-align:left;flex:1;min-width:0}.title p{margin:0;color:var(--muted);font-size:14px;line-height:1.4;max-width:100%}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:rgba(255,255,255,.86);font-size:13px;white-space:nowrap;user-select:none}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:rgba(255,255,255,.86);font-size:13px;white-space:nowrap;user-select:none;margin-left:auto}
     .dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:6px;position:relative}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:6px;position:relative}
+    @media(max-width:1200px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:820px){.grid{grid-template-columns:1fr}header{flex-direction:column}.pill{align-self:flex-start}.header-social{margin-left:0;align-self:flex-end}}
     .card{border-radius:22px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.08));box-shadow:var(--shadow2);overflow:hidden;transform-style:preserve-3d;transition:transform .18s ease,box-shadow .18s ease;position:relative;display:flex;flex-direction:column}
     .card:hover{box-shadow:0 28px 90px rgba(0,0,0,.38)}
-    .cardTop{padding:18px 18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .tags{display:flex;align-items:center;gap:8px}
+    .cardTop{padding:18px 18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .tag{font-size:12px;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.12);padding:7px 10px;border-radius:999px}
-    .thumb{margin:10px 18px 0;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.12);aspect-ratio:16/7;display:flex;align-items:center;justify-content:center}
+    .thumb{margin:10px 18px 0;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.12);aspect-ratio:16/5.4;display:flex;align-items:center;justify-content:center}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);filter:saturate(1.05) contrast(1.02)}
-    .cardBody{padding:12px 18px 18px;flex:1;display:flex;flex-direction:column}
-    .cardBody h2{margin:4px 0 6px;font-size:22px;letter-spacing:.2px}
-    .cardBody p{margin:0;color:rgba(255,255,255,.76);line-height:1.5;font-size:14.5px}
+    .cardBody{padding:10px 16px 14px;flex:1;display:flex;flex-direction:column}
+    .cardBody h2{margin:2px 0 4px;font-size:20px;letter-spacing:.2px}
+    .cardBody p{margin:0;color:rgba(255,255,255,.76);line-height:1.4;font-size:13.5px}
     .actions{display:flex;gap:10px;margin-top:auto;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:white;text-decoration:none;font-weight:650;letter-spacing:.2px;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;cursor:pointer;user-select:none}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:white;text-decoration:none;font-weight:650;letter-spacing:.2px;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;cursor:pointer;user-select:none}
     .btn.primary{background:var(--btn);border:none;box-shadow:0 14px 30px rgba(0,0,0,.25)}
     .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
     .btn:active{transform:translateY(0) scale(.99)}
@@ -59,11 +60,11 @@
     .email a:hover{border-bottom-style:solid}
     .social{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .header-social{margin-left:auto}
-    .social a.social-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:white;text-decoration:none;transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
+    .social a.social-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:white;text-decoration:none;transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
     .social a.social-icon:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
     .social a.social-icon:focus-visible{outline:2px solid rgba(255,255,255,.55);outline-offset:2px}
-    .social a.social-icon svg{width:22px;height:22px;display:block;fill:currentColor}
-    .resume-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:rgba(255,255,255,.94);text-decoration:none;font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:clamp(19px,2.2vw,21px);font-weight:700;font-style:normal;letter-spacing:.02em;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
+    .social a.social-icon svg{width:16px;height:16px;display:block;fill:currentColor}
+    .resume-link{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 13px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:rgba(255,255,255,.94);text-decoration:none;font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:clamp(16px,1.9vw,18px);font-weight:700;font-style:normal;letter-spacing:.02em;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
     .resume-link:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28);background:rgba(255,255,255,.14)}
     .resume-link:focus-visible{outline:2px solid rgba(255,255,255,.55);outline-offset:2px}
   </style>
@@ -169,7 +170,50 @@
             </div>
           </div>
         </article>
-        <article class="card helmet-card">
+
+        <article class="card" data-tilt>
+          <div class="cardTop">
+            <div class="tags">
+              <span class="tag">Site</span>
+              <span class="tag">Joke • Fact • Quote</span>
+            </div>
+            <div class="pill" title="Status">
+              <span class="dot"></span>
+              Live
+            </div>
+          </div>
+
+          <div class="thumb">
+            <img src="/public/daily.png" alt="Daily Cards preview" />
+          </div>
+
+          <div class="cardBody">
+            <h2>Daily Cards</h2>
+            <p>Daily joke, fact, and quote cards in a clean, fast layout.</p>
+
+            <div class="actions">
+              <a class="btn primary" href="https://daily.robin-sharma.com" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M14 3h7v7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M21 3l-9 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M10 7H7a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Open Daily Cards
+              </a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <div class="email">
+          Contact: <a href="mailto:help@robin-sharma.com">help@robin-sharma.com</a>
+        </div>
+      </footer>
+    </main>
+
+    <section class="panel helmet-panel">
+      <article class="card">
           <div class="cardTop">
             <div class="tags">
               <span class="tag">3D</span>
@@ -206,14 +250,7 @@
             </p>
           </div>
         </article>
-      </section>
-
-      <footer>
-        <div class="email">
-          Contact: <a href="mailto:help@robin-sharma.com">help@robin-sharma.com</a>
-        </div>
-      </footer>
-    </main>
+    </section>
   </div>
 
   <script>const particles=document.getElementById("particles"),count=120;for(let i=0;i<count;i++){const p=document.createElement("div");p.className="particle";const size=3+Math.random()*8;p.style.width=size+"px",p.style.height=size+"px",p.style.left=(Math.random()*100)+"%",p.style.animationDuration=(15+Math.random()*25)+"s",p.style.animationDelay=(-Math.random()*30)+"s",p.style.opacity=(.3+Math.random()*.7).toFixed(2),particles.appendChild(p)}const bannerSnow=document.getElementById("banner-snow"),bannerCount=80;for(let i=0;i<bannerCount;i++){const p=document.createElement("div");p.className="banner-particle";const size=2+Math.random()*6;p.style.width=size+"px",p.style.height=size+"px",p.style.left=(Math.random()*100)+"%",p.style.animationDuration=(3+Math.random()*5)+"s",p.style.animationDelay=(-Math.random()*8)+"s",bannerSnow.appendChild(p)}const panel=document.getElementById("panel");window.addEventListener("mousemove",e=>{const r=panel.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*100,y=(e.clientY-r.top)/r.height*100;panel.style.setProperty("--mx",x+"%"),panel.style.setProperty("--my",y+"%")});const cards=document.querySelectorAll("[data-tilt]");cards.forEach(card=>{card.addEventListener("mousemove",e=>{const r=card.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=(e.clientX-cx)/r.width,dy=(e.clientY-cy)/r.height,rx=(-dy*8).toFixed(2),ry=(dx*10).toFixed(2);card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`}),card.addEventListener("mouseleave",()=>card.style.transform="")});document.querySelectorAll(".btn:not(.primary)").forEach(btn=>{btn.addEventListener("click",async e=>{if(!btn.textContent.toLowerCase().includes("copy"))return;e.preventDefault();const href=btn.getAttribute("href");try{await navigator.clipboard.writeText(href);const old=btn.textContent;btn.textContent="Copied!",setTimeout(()=>btn.textContent=old,1e3)}catch{window.open(href,"_blank")}})})</script>
