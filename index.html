@@ -19,9 +19,10 @@
     @keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-18px) scale(1.06)}}
     .particles{position:fixed;inset:0;pointer-events:none}.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.6;animation:snowfall linear infinite}
     @keyframes snowfall{from{transform:translateY(-10px) rotate(0deg)}to{transform:translateY(110vh) rotate(360deg)}}
+    body.paused .particle,body.paused .banner-particle,body.paused .orb,body.paused .banner h1,body.paused{animation-play-state:paused}
     .banner{position:fixed;top:14px;left:0;right:0;z-index:10;pointer-events:none;display:flex;justify-content:flex-start;overflow:visible}
     .banner h1{margin:0;font-size:clamp(28px,4.8vw,50px);letter-spacing:1.2px;font-weight:700;white-space:nowrap;animation:slideBounce 24s ease-in-out infinite}
-    @media (prefers-reduced-motion:reduce){.banner h1{animation:none}}
+    @media (prefers-reduced-motion:reduce){.banner h1{animation:none}.orb{animation:none}body{animation:none}}
     @keyframes slideBounce{0%{transform:translateX(0)}50%{transform:translateX(calc(100vw - 100% - 24px))}100%{transform:translateX(0)}}
     .banner-snow{position:absolute;top:100%;left:0;width:100%;height:200px;pointer-events:none;overflow:hidden}
     .banner-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.8;animation:bannerSnowfall linear infinite}
@@ -67,10 +68,26 @@
     .resume-link{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 13px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:rgba(255,255,255,.94);text-decoration:none;font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:clamp(16px,1.9vw,18px);font-weight:700;font-style:normal;letter-spacing:.02em;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
     .resume-link:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.28);background:rgba(255,255,255,.14)}
     .resume-link:focus-visible{outline:2px solid rgba(255,255,255,.55);outline-offset:2px}
+
+    #intro{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    #intro.hide{animation:introOut .5s ease forwards}
+    @keyframes introOut{to{opacity:0;visibility:hidden}}
+    #intro h1{margin:0;display:flex;gap:.28em}
+    #intro h1 span{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(38px,10vw,120px);letter-spacing:.04em;color:#fff;text-shadow:0 0 40px rgba(139,92,246,.6),0 0 80px rgba(59,130,246,.4);opacity:0;transform:scale(.4)}
+    #intro h1 span.pop{animation:introPop 1s cubic-bezier(.22,1,.36,1) forwards}
+    @keyframes introPop{0%{opacity:0;transform:scale(.4)}55%{opacity:1;transform:scale(1.12)}75%{transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+    #intro .glow{position:absolute;width:60vmax;height:60vmax;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.35),transparent 60%);opacity:0}
+    #intro .glow.pulse{animation:glowPulse 1s ease forwards}
+    @keyframes glowPulse{0%{opacity:0;transform:scale(.3)}55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.3)}}
+    @media (prefers-reduced-motion:reduce){#intro h1 span.pop,#intro .glow.pulse{animation:none;opacity:1;transform:none}}
   </style>
 </head>
 
 <body>
+  <div id="intro" aria-hidden="true">
+    <div class="glow" id="intro-glow"></div>
+    <h1><span id="intro-word1">Robin</span><span id="intro-word2">Sharma</span></h1>
+  </div>
   <div class="noise"></div>
   <div class="orb one"></div>
   <div class="orb two"></div>
@@ -253,6 +270,118 @@
     </section>
   </div>
 
-  <script>const particles=document.getElementById("particles"),count=120;for(let i=0;i<count;i++){const p=document.createElement("div");p.className="particle";const size=3+Math.random()*8;p.style.width=size+"px",p.style.height=size+"px",p.style.left=(Math.random()*100)+"%",p.style.animationDuration=(15+Math.random()*25)+"s",p.style.animationDelay=(-Math.random()*30)+"s",p.style.opacity=(.3+Math.random()*.7).toFixed(2),particles.appendChild(p)}const bannerSnow=document.getElementById("banner-snow"),bannerCount=80;for(let i=0;i<bannerCount;i++){const p=document.createElement("div");p.className="banner-particle";const size=2+Math.random()*6;p.style.width=size+"px",p.style.height=size+"px",p.style.left=(Math.random()*100)+"%",p.style.animationDuration=(3+Math.random()*5)+"s",p.style.animationDelay=(-Math.random()*8)+"s",bannerSnow.appendChild(p)}const panel=document.getElementById("panel");window.addEventListener("mousemove",e=>{const r=panel.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*100,y=(e.clientY-r.top)/r.height*100;panel.style.setProperty("--mx",x+"%"),panel.style.setProperty("--my",y+"%")});const cards=document.querySelectorAll("[data-tilt]");cards.forEach(card=>{card.addEventListener("mousemove",e=>{const r=card.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=(e.clientX-cx)/r.width,dy=(e.clientY-cy)/r.height,rx=(-dy*8).toFixed(2),ry=(dx*10).toFixed(2);card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`}),card.addEventListener("mouseleave",()=>card.style.transform="")});document.querySelectorAll(".btn:not(.primary)").forEach(btn=>{btn.addEventListener("click",async e=>{if(!btn.textContent.toLowerCase().includes("copy"))return;e.preventDefault();const href=btn.getAttribute("href");try{await navigator.clipboard.writeText(href);const old=btn.textContent;btn.textContent="Copied!",setTimeout(()=>btn.textContent=old,1e3)}catch{window.open(href,"_blank")}})})</script>
+  <script>
+    (function(){
+      const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+      /* ---------- Intro splash ---------- */
+      const intro=document.getElementById("intro");
+      const glow=document.getElementById("intro-glow");
+      const word1=document.getElementById("intro-word1");
+      const word2=document.getElementById("intro-word2");
+      const introAudio=new Audio("/public/whoosh.mp3");
+      const gestureEvents=["pointerdown","keydown","touchstart"];
+
+      function playSound(){
+        return new Promise(resolve=>{
+          introAudio.currentTime=0;
+          introAudio.play().then(()=>resolve(true)).catch(()=>resolve(false));
+        });
+      }
+      // Wait for a user gesture to unlock audio, but never block the intro forever.
+      function waitForGestureOrTimeout(ms){
+        return new Promise(resolve=>{
+          let done=false;
+          const finish=()=>{
+            if(done)return;done=true;
+            clearTimeout(t);
+            gestureEvents.forEach(evt=>window.removeEventListener(evt,finish));
+            resolve();
+          };
+          const t=setTimeout(finish,ms);
+          gestureEvents.forEach(evt=>window.addEventListener(evt,finish,{once:true,passive:true}));
+        });
+      }
+      async function ensureAudioUnlocked(){
+        if(await playSound())return;
+        await waitForGestureOrTimeout(1200);
+        await playSound();
+      }
+      function popIn(el){el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop");}
+      function pulseGlow(){glow.classList.remove("pulse");void glow.offsetWidth;glow.classList.add("pulse");}
+      function dismissIntro(){intro.classList.add("hide");setTimeout(()=>intro.remove(),550);}
+
+      (async function runIntro(){
+        if(reduceMotion){
+          word1.classList.add("pop");word2.classList.add("pop");
+          await wait(1200);dismissIntro();return;
+        }
+        popIn(word1);pulseGlow();
+        await ensureAudioUnlocked();
+        await wait(450);
+        popIn(word2);pulseGlow();
+        await playSound();
+        await wait(900);
+        dismissIntro();
+      })();
+
+      /* ---------- Decorative particles (skipped when motion is reduced) ---------- */
+      if(!reduceMotion){
+        function spawn(container,className,count,minSize,maxSize,minDur,maxDur,maxDelay,fadeOpacity){
+          const frag=document.createDocumentFragment();
+          for(let i=0;i<count;i++){
+            const p=document.createElement("div");
+            p.className=className;
+            p.style.width=p.style.height=(minSize+Math.random()*(maxSize-minSize))+"px";
+            p.style.left=(Math.random()*100)+"%";
+            p.style.animationDuration=(minDur+Math.random()*(maxDur-minDur))+"s";
+            p.style.animationDelay=(-Math.random()*maxDelay)+"s";
+            if(fadeOpacity)p.style.opacity=(.3+Math.random()*.7).toFixed(2);
+            frag.appendChild(p);
+          }
+          container.appendChild(frag);
+        }
+        spawn(document.getElementById("particles"),"particle",80,3,11,15,40,30,true);
+        spawn(document.getElementById("banner-snow"),"banner-particle",50,2,8,3,8,8,false);
+
+        // Pause decorative animation while the tab is hidden.
+        document.addEventListener("visibilitychange",()=>{
+          document.body.classList.toggle("paused",document.hidden);
+        });
+
+        /* ---------- Pointer-driven effects ---------- */
+        // Panel spotlight — batch DOM writes into one rAF per frame.
+        const panel=document.getElementById("panel");
+        let panelRaf=0,ptrX=0,ptrY=0;
+        window.addEventListener("mousemove",e=>{
+          ptrX=e.clientX;ptrY=e.clientY;
+          if(panelRaf)return;
+          panelRaf=requestAnimationFrame(()=>{
+            const r=panel.getBoundingClientRect();
+            panel.style.setProperty("--mx",((ptrX-r.left)/r.width*100)+"%");
+            panel.style.setProperty("--my",((ptrY-r.top)/r.height*100)+"%");
+            panelRaf=0;
+          });
+        },{passive:true});
+
+        // 3D tilt — read layout + write transform together inside rAF.
+        document.querySelectorAll("[data-tilt]").forEach(card=>{
+          let raf=0,mx=0,my=0;
+          card.addEventListener("mousemove",e=>{
+            mx=e.clientX;my=e.clientY;
+            if(raf)return;
+            raf=requestAnimationFrame(()=>{
+              const r=card.getBoundingClientRect();
+              const dx=(mx-(r.left+r.width/2))/r.width;
+              const dy=(my-(r.top+r.height/2))/r.height;
+              card.style.transform=`perspective(900px) rotateX(${(-dy*8).toFixed(2)}deg) rotateY(${(dx*10).toFixed(2)}deg) translateY(-6px)`;
+              raf=0;
+            });
+          },{passive:true});
+          card.addEventListener("mouseleave",()=>card.style.transform="");
+        });
+      }
+    })();</script>
 </body>
 </html>
